@@ -9,7 +9,9 @@ npm install
 npm run dev
 ```
 
-The app is fully client-side and stores predictions, uploads, scores, and history in `localStorage`.
+The app uses a shared JSON state model rather than `localStorage`.
+
+During local development, Vite reads and writes the shared state in the root `data.json` through `/api/state`. GitHub Pages can serve the seed JSON but cannot accept browser writes; configure Supabase using the steps in `SPEC.md` for true shared persistence across visitors.
 
 ## Links
 

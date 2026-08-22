@@ -1,5 +1,12 @@
 # Changelog
 
+## [2026-08-23] Add shared-state storage layer and RESET
+- Replaced application `localStorage` persistence with a shared `AppState` JSON model.
+- Added local Vite API read/write support for root `data.json` and a production Supabase REST adapter when configured through env variables.
+- Added the confirmed RESET action to clear both scores and all history while preserving current grids.
+- Documented the GitHub Pages static-hosting limitation and Supabase setup in `SPEC.md`.
+- Files affected: `data.json`, `vite.config.ts`, `src/main.tsx`, `src/data/appState.ts`, `src/data/storage.ts`, `SPEC.md`.
+
 ## [2026-08-23] Publish GRIDLINE to GitHub Pages
 - Created the public `pufixluv1984-bit/gridline` repository and pushed the `main` branch.
 - Added the Vite `/gridline/` base path, `gh-pages` deployment scripts, and live README link.
