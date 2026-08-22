@@ -26,7 +26,7 @@ The app no longer uses `localStorage` for application state.
 
 ### Local development
 
-When running Vite in development, `src/data/storage.ts` calls `GET /api/state` and `POST /api/state`. The Vite plugin in `vite.config.ts` reads and writes the root `data.json` file. If the file is missing or invalid, the app falls back to `defaultState()`; the next local POST recreates a valid JSON file. Every edited prediction, reorder, fastest-lap change, avatar upload, winner/tweet change, APPLY RESULT, round edit, and RESET calls the save path.
+When running Vite in development without Supabase variables, `src/data/storage.ts` calls `GET /api/state` and `POST /api/state`. The Vite plugin in `vite.config.ts` reads and writes the root `data.json` file. If the file is missing or invalid, the app falls back to `defaultState()`; the next local POST recreates a valid JSON file. If Supabase variables are present, development uses Supabase too, so local testing matches production. Every edited prediction, reorder, fastest-lap change, avatar upload, winner/tweet change, APPLY RESULT, round edit, and RESET calls the save path.
 
 ### Live GitHub Pages status
 

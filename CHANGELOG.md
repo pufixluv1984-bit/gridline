@@ -1,5 +1,11 @@
 # Changelog
 
+## [2026-08-23] Connect Supabase client configuration
+- Added the provided Supabase project URL and publishable key to the local ignored `.env` file.
+- Supabase now takes precedence over the local JSON API whenever the environment variables are present.
+- The Supabase table/policies are still pending creation in the project SQL editor; the secret key was not stored or exposed in the frontend.
+- Files affected: `.env` (ignored), `src/data/storage.ts`, `SPEC.md`.
+
 ## [2026-08-23] Fix refresh persistence and storage diagnostics
 - Added an explicit load-first flow with a loading screen and console logs identifying local JSON, static JSON, Supabase, or default sources.
 - Serialized save requests so rapid edits cannot overwrite one another out of order.
