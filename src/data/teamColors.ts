@@ -1,0 +1,1 @@
+export const teamColors = { McLaren:'#ff8000', Ferrari:'#e8002d', 'Red Bull Racing':'#3671c6', Mercedes:'#27f4d2', Williams:'#64c4ff', Audi:'#00302a', 'Aston Martin':'#229971', Alpine:'#0093cc', Haas:'#b6babd', 'Racing Bulls':'#6692ff', Cadillac:'#ffd100' };
