@@ -13,6 +13,8 @@ The app uses a shared JSON state model rather than `localStorage`.
 
 During local development, Vite reads and writes the shared state in the root `data.json` through `/api/state`. GitHub Pages can serve the seed JSON but cannot accept browser writes; configure Supabase using the steps in `SPEC.md` for true shared persistence across visitors.
 
+For live shared persistence, copy `.env.example` to `.env`, fill in the Supabase URL and anon key, and build/deploy with those variables available. `.env` is ignored by Git.
+
 ## Links
 
 Live deployment: https://pufixluv1984-bit.github.io/gridline/

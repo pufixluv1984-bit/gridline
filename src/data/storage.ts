@@ -9,20 +9,21 @@ async function readResponse(response: Response) {
   return response.json();
 }
 
-export async function loadSharedState(): Promise<AppState> {
-  try {
-    if (import.meta.env.DEV) {
-      return normalizeState(await readResponse(await fetch('/api/state')));
-    }
-    if (hasSupabase) {
-      const rows = await readResponse(await fetch(`${supabaseUrl}/rest/v1/app_state?id=eq.gridline&select=state`, { headers: { apikey: supabaseKey!, Authorization: `Bearer ${supabaseKey}` } }));
-      return normalizeState(rows[0]?.state);
-    }
-    return normalizeState(await readResponse(await fetch(`${import.meta.env.BASE_URL}data.json?cache=${Date.now()}`)));
-  } catch (error) {
-    console.warn('Shared state could not be loaded; using defaults.', error);
-    return defaultState();
+export type LoadResult = { state: AppState; source: 'local-data.json'|'supabase'|'static-data.json'|'defaults'; error?: string };
+
+export async function loadSharedState(): Promise<LoadResult> {
+  if (import.meta.env.DEV) {
+    try { return { state:normalizeState(await readResponse(await fetch('/api/state'))), source:'local-data.json' }; }
+    catch (error) { console.error('[GRIDLINE] Failed to load local data.json.', error); return { state:defaultState(), source:'defaults', error:String(error) }; }
   }
+  if (hasSupabase) {
+    try {
+      const rows = await readResponse(await fetch(`${supabaseUrl}/rest/v1/app_state?id=eq.gridline&select=state`, { headers: { apikey: supabaseKey!, Authorization: `Bearer ${supabaseKey}` } }));
+      return { state:normalizeState(rows[0]?.state), source:'supabase' };
+    } catch (error) { console.error('[GRIDLINE] Failed to load Supabase state.', error); return { state:defaultState(), source:'defaults', error:String(error) }; }
+  }
+  try { return { state:normalizeState(await readResponse(await fetch(`${import.meta.env.BASE_URL}data.json?cache=${Date.now()}`))), source:'static-data.json' }; }
+  catch (error) { console.error('[GRIDLINE] Failed to load static data.json.', error); return { state:defaultState(), source:'defaults', error:String(error) }; }
 }
 
 export async function saveSharedState(state: AppState): Promise<void> {
@@ -36,5 +37,5 @@ export async function saveSharedState(state: AppState): Promise<void> {
     if (!response.ok) throw new Error(`Supabase state save failed: ${response.status}`);
     return;
   }
-  console.warn('Live shared persistence is not configured. GitHub Pages is read-only; state was not saved remotely.');
+  throw new Error('Live shared persistence is not configured. Configure Supabase before expecting cross-device writes.');
 }

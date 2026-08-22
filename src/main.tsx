@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from 'react';
+import React,{useEffect,useRef,useState} from 'react';
 import {createRoot} from 'react-dom/client';
 import {drivers,type Driver} from './data/drivers';
 import {type AppState,type HistoryItem} from './data/appState';
@@ -7,10 +7,12 @@ import {scorePlayer,SCORING_RULES} from './utils/scoring';
 import './styles.css';
 
 function App(){
- const [tab,setTab]=useState<'dashboard'|'history'>('dashboard'); const [state,setState]=useState<AppState|null>(null); const [toast,setToast]=useState(''); const [saving,setSaving]=useState(false);
- useEffect(()=>{loadSharedState().then(setState)},[]);
- if(!state) return <div className="app loading" style={{minHeight:'100vh',display:'grid',placeItems:'center',color:'#777'}}>LOADING SHARED GRIDLINE STATE…</div>;
- const commit=(next:AppState,message?:string)=>{setState(next);setSaving(true);saveSharedState(next).then(()=>setSaving(false)).catch(()=>{setSaving(false);setToast('Shared save failed');setTimeout(()=>setToast(''),2800)});if(message){setToast(message);setTimeout(()=>setToast(''),2200)}};
+ const [tab,setTab]=useState<'dashboard'|'history'>('dashboard'); const [state,setState]=useState<AppState|null>(null); const [loadError,setLoadError]=useState<string|null>(null); const [toast,setToast]=useState(''); const [saving,setSaving]=useState(false);
+ const saveQueue=useRef(Promise.resolve());
+ const load=()=>{setLoadError(null);setState(null);loadSharedState().then(result=>{console.log(`[GRIDLINE] State loaded from ${result.source}.`);if(result.error){setLoadError(result.error);return}setState(result.state)})};
+ useEffect(load,[]);
+ if(!state) return <div className="app loading" style={{minHeight:'100vh',display:'grid',placeItems:'center',color:'#777',textAlign:'center'}}>{loadError?<div><p>Unable to load shared GRIDLINE state.</p><button onClick={load}>RETRY</button></div>:'LOADING SHARED GRIDLINE STATE…'}</div>;
+ const commit=(next:AppState,message?:string)=>{setState(next);setSaving(true);saveQueue.current=saveQueue.current.catch(()=>undefined).then(()=>saveSharedState(next)).then(()=>console.log('[GRIDLINE] State saved.')).catch(error=>{console.error('[GRIDLINE] State save failed.',error);setToast('Shared save failed');setTimeout(()=>setToast(''),2800)}).finally(()=>setSaving(false));if(message){setToast(message);setTimeout(()=>setToast(''),2200)}};
  const set=(patch:Partial<AppState>)=>commit({...state,...patch});
  const apply=()=>{const vp=scorePlayer(state.vova,state.result,state.vovaFL,state.resultFL),tp=scorePlayer(state.tshy,state.result,state.tshyFL,state.resultFL);const item={round:state.round,date:new Date().toLocaleDateString('en-GB'),vova:vp,tshy:tp,totalVova:state.scores.vova+vp,totalTshy:state.scores.tshy+tp};commit({...state,history:[item,...state.history],scores:{vova:item.totalVova,tshy:item.totalTshy}},'Result applied')};
  const reset=()=>{if(!window.confirm("Are you sure you want to reset both players' scores to 0 and clear all round history? This cannot be undone."))return;commit({...state,history:[],scores:{vova:0,tshy:0}},'Scores and history reset')};

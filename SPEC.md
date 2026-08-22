@@ -62,7 +62,9 @@ VITE_SUPABASE_ANON_KEY=YOUR_ANON_PUBLIC_KEY
 
 4. Add the same variables to the GitHub Pages deployment workflow/environment. The current `gh-pages` script does not inject repository secrets, so a workflow is recommended before enabling production writes.
 
-The client then reads and patches the single `app_state` row with `id = 'gridline'`, using the same `AppState` JSON shape as `data.json`. The anon key is intended to be public; do not put a Supabase service-role key in the browser.
+The client then reads and patches the single `app_state` row with `id = 'gridline'`, using the same `AppState` JSON shape as `data.json`. The anon key is intended to be public; do not put a Supabase service-role key in the browser. The current adapter is refresh-based: a new page load reads the latest shared row, but there is no Supabase Realtime subscription yet. Save requests are serialized so rapid edits persist in order.
+
+On startup the UI stays in a loading state until the storage read completes. The browser console logs whether the state came from local `data.json`, Supabase, the static JSON seed, or defaults. Storage read failures show a retry state instead of flashing or overwriting with defaults.
 
 ## Data model
 

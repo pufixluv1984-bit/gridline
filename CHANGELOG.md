@@ -1,5 +1,12 @@
 # Changelog
 
+## [2026-08-23] Fix refresh persistence and storage diagnostics
+- Added an explicit load-first flow with a loading screen and console logs identifying local JSON, static JSON, Supabase, or default sources.
+- Serialized save requests so rapid edits cannot overwrite one another out of order.
+- Added retry behavior instead of silently replacing storage read failures with defaults.
+- Added `.env.example` and clarified that live cross-device writes still require Supabase credentials.
+- Files affected: `src/main.tsx`, `src/data/storage.ts`, `vite.config.ts`, `.env.example`, `README.md`.
+
 ## [2026-08-23] Add shared-state storage layer and RESET
 - Replaced application `localStorage` persistence with a shared `AppState` JSON model.
 - Added local Vite API read/write support for root `data.json` and a production Supabase REST adapter when configured through env variables.

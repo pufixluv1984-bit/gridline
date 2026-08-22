@@ -5,8 +5,8 @@ import react from '@vitejs/plugin-react';
 
 function sharedStatePlugin(): Plugin {
   const file = path.resolve(process.cwd(), 'data.json');
-  const read = () => fs.existsSync(file) ? fs.readFileSync(file, 'utf8') : JSON.stringify({});
   const write = (body:string) => { JSON.parse(body); fs.writeFileSync(file, `${JSON.stringify(JSON.parse(body), null, 2)}\n`, 'utf8'); };
+  const read = () => { if(!fs.existsSync(file)) write(JSON.stringify({version:1,round:'01',vova:[],tshy:[],result:[],history:[],scores:{vova:0,tshy:0},avatars:{vova:'',tshy:''},winner:'',tweet:''})); return fs.readFileSync(file, 'utf8'); };
   return {
     name: 'gridline-shared-state',
     configureServer(server) {
