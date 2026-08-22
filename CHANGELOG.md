@@ -6,6 +6,11 @@
 - Explicitly kept the Supabase secret/service-role key out of frontend code and deployment configuration.
 - Files affected: `.github/workflows/deploy.yml`, `README.md`, `SPEC.md`.
 
+## [2026-08-23] Enable live shared persistence
+- Confirmed the deployed Pages bundle contains the Supabase project URL and publishable key.
+- Confirmed the live Supabase REST endpoint returns the shared `app_state` row and accepts updates under the configured RLS policies.
+- Sync mode is refresh-based; realtime subscriptions remain a future enhancement.
+
 ## [2026-08-23] Connect Supabase client configuration
 - Added the provided Supabase project URL and publishable key to the local ignored `.env` file.
 - Supabase now takes precedence over the local JSON API whenever the environment variables are present.

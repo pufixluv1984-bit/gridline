@@ -30,7 +30,7 @@ When running Vite in development without Supabase variables, `src/data/storage.t
 
 ### Live GitHub Pages status
 
-GitHub Pages is static hosting and cannot accept browser writes to the repository. The deployed site can read the emitted `data.json`, but it cannot provide true cross-device persistence without a backend. In this environment I could not create or configure a Supabase project on the user's behalf, so the current live deployment is **not yet a genuinely shared writable backend**. When no Supabase environment variables are present in production, writes are intentionally skipped and a warning is logged; this is not silently presented as shared persistence.
+GitHub Pages is static hosting and cannot accept browser writes to the repository. The deployed site now uses the configured Supabase REST API directly from the browser, so it does not need to write the repository. When no Supabase environment variables are present in production, writes are intentionally rejected and a visible save error is shown; this is not silently presented as shared persistence.
 
 ### Supabase setup for true live sharing
 
@@ -90,7 +90,7 @@ Avatars and winner images are base64 strings when uploaded. The root seed file i
 
 ## Limitations / TODO
 
-- The current published Pages site is read-only until Supabase credentials and policies are configured.
+- The published Pages site is configured with the Supabase URL and publishable key through encrypted GitHub Actions secrets. It uses refresh-based synchronization: visitors see the same saved state after loading/refreshing. There is no realtime subscription yet.
 - Native drag-and-drop is used instead of dnd-kit to keep the standalone build lightweight.
 - History entries have no edit/delete controls.
 - The winner label remains decorative and follows the round input.
