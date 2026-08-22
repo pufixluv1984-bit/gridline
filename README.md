@@ -13,6 +13,6 @@ The app is fully client-side and stores predictions, uploads, scores, and histor
 
 ## Links
 
-Live deployment: to be added after GitHub Pages deployment.
+Live deployment: https://pufixluv1984-bit.github.io/gridline/
 
 See [SPEC.md](SPEC.md) for the implementation details and [CHANGELOG.md](CHANGELOG.md) for the change history.
