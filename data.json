@@ -5,8 +5,14 @@
   "tshy": [],
   "result": [],
   "history": [],
-  "scores": { "vova": 0, "tshy": 0 },
-  "avatars": { "vova": "", "tshy": "" },
+  "scores": {
+    "vova": 0,
+    "tshy": 0
+  },
+  "avatars": {
+    "vova": "",
+    "tshy": ""
+  },
   "winner": "",
   "tweet": ""
 }
