@@ -60,7 +60,7 @@ VITE_SUPABASE_URL=https://YOUR_PROJECT.supabase.co
 VITE_SUPABASE_ANON_KEY=YOUR_ANON_PUBLIC_KEY
 ```
 
-4. Add the same variables to the GitHub Pages deployment workflow/environment. The current `gh-pages` script does not inject repository secrets, so a workflow is recommended before enabling production writes.
+4. Add the same variables to the GitHub repository Actions secrets as `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY`. `.github/workflows/deploy.yml` injects them only at build time. Use the publishable/anon key, never a Supabase secret/service-role key, because Vite embeds `VITE_*` values into browser JavaScript.
 
 The client then reads and patches the single `app_state` row with `id = 'gridline'`, using the same `AppState` JSON shape as `data.json`. The anon key is intended to be public; do not put a Supabase service-role key in the browser. The current adapter is refresh-based: a new page load reads the latest shared row, but there is no Supabase Realtime subscription yet. Save requests are serialized so rapid edits persist in order.
 

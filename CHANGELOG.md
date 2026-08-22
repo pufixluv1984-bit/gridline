@@ -1,5 +1,11 @@
 # Changelog
 
+## [2026-08-23] Configure GitHub Pages Supabase build
+- Verified the `app_state` table is readable and writable using the publishable key and configured RLS.
+- Added a GitHub Actions Pages workflow that builds with `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` repository secrets.
+- Explicitly kept the Supabase secret/service-role key out of frontend code and deployment configuration.
+- Files affected: `.github/workflows/deploy.yml`, `README.md`, `SPEC.md`.
+
 ## [2026-08-23] Connect Supabase client configuration
 - Added the provided Supabase project URL and publishable key to the local ignored `.env` file.
 - Supabase now takes precedence over the local JSON API whenever the environment variables are present.

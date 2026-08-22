@@ -15,6 +15,8 @@ During local development, Vite reads and writes the shared state in the root `da
 
 For live shared persistence, copy `.env.example` to `.env`, fill in the Supabase URL and anon key, and build/deploy with those variables available. `.env` is ignored by Git.
 
+GitHub Pages deployment is automated by `.github/workflows/deploy.yml`. Add repository Actions secrets named `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY`; use only the Supabase publishable/anon key here. Never add a Supabase secret/service-role key to GitHub Actions secrets used by the frontend build.
+
 ## Links
 
 Live deployment: https://pufixluv1984-bit.github.io/gridline/
