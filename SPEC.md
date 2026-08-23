@@ -30,7 +30,7 @@ Picker menus use one shared open state across VOVA, T-SHY, and the result grid, 
 The official Race result grid is also reorderable for admins with the same 8px drag activation behavior as the prediction grids; its order is saved to shared state.
 After APPLY RESULT, prediction cards show a red `+12` badge for exact matches and a gold `+6` badge for non-exact top-5 matches. These per-position badges are stored in `lastApplied` and are shown only for the applied current round.
 
-The Last Race Winner card now contains an editable Formula 1 account avatar, account label, editable tweet line, and image. The decorative WINNER/SPRINT overlay was removed. The card is a flex column and the image fills the fixed frame with `object-fit: cover` and centered alignment.
+The Last Race Winner card now contains an editable Formula 1 account avatar, account label, editable tweet line, and image. The decorative WINNER/SPRINT overlay was removed. The card is a flex column inside the shared three-column prediction grid; its image wrap has `min-height: 0` and overflow clipping, and the image fills the available frame with `object-fit: cover` and centered alignment without affecting row height.
 
 RESET uses a confirmation dialog with the exact destructive-action warning. After confirmation it sets both shared scores to zero and clears the complete history array. It intentionally preserves the current VOVA, T-SHY, and race-result grids as requested.
 
