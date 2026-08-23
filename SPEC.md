@@ -88,7 +88,7 @@ type AppState = {
   round: string;
   vova: Driver[]; tshy: Driver[]; result: Driver[];
   vovaFL: Driver; tshyFL: Driver; resultFL: Driver;
-  history: { round:string; date:string; vova:number; tshy:number; totalVova:number; totalTshy:number }[];
+  history: { round:string; date:string; vova:number; tshy:number; totalVova:number; totalTshy:number; vovaPrediction?:Driver[]; tshyPrediction?:Driver[]; result?:Driver[]; vovaFL?:Driver; tshyFL?:Driver; resultFL?:Driver }[];
   scores: { vova:number; tshy:number };
   avatars: { vova:string; tshy:string };
   winner: string;

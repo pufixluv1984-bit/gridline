@@ -1,6 +1,6 @@
 import { drivers, defaultGrid, type Driver } from './drivers';
 
-export type HistoryItem = { round:string; date:string; vova:number; tshy:number; totalVova:number; totalTshy:number };
+export type HistoryItem = { round:string; date:string; vova:number; tshy:number; totalVova:number; totalTshy:number; vovaPrediction?:Driver[]; tshyPrediction?:Driver[]; result?:Driver[]; vovaFL?:Driver; tshyFL?:Driver; resultFL?:Driver };
 export type AppState = {
   version: 1;
   round: string;

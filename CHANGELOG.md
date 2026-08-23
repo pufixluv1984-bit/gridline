@@ -121,3 +121,7 @@
 [2026-08-23] Refine winner card accent styling
 - Removed the top photo tint, keeping only the bottom accent gradient.
 - Removed the outer card glow and custom color input; only team-color presets remain.
+
+[2026-08-23] Add expandable history prediction breakdowns
+- APPLY RESULT now stores both predictions, the actual top-10 result, and fastest-lap picks in each history entry.
+- History rounds can expand to show per-position predicted vs actual drivers, exact/range/miss points, fastest-lap bonus, and round totals; older entries show a safe no-details message.
