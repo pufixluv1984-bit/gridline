@@ -29,7 +29,7 @@ Position cards use dnd-kit `PointerSensor` with an 8px distance activation const
 Picker menus use one shared open state across VOVA, T-SHY, and the result grid, so opening one closes any other open menu. Position/result cards show the driver name once; their compact picker trigger contains only the single dropdown arrow.
 The official Race result grid is also reorderable for admins with the same 8px drag activation behavior as the prediction grids; its order is saved to shared state.
 
-The Last Race Winner card now contains only the Formula 1 account label, editable tweet line, and image. The decorative WINNER/SPRINT overlay was removed. The card is a flex column and the image fills the remaining space with `object-fit: cover` and centered alignment.
+The Last Race Winner card now contains an editable Formula 1 account avatar, account label, editable tweet line, and image. The decorative WINNER/SPRINT overlay was removed. The card is a flex column and the image fills the fixed frame with `object-fit: cover` and centered alignment.
 
 RESET uses a confirmation dialog with the exact destructive-action warning. After confirmation it sets both shared scores to zero and clears the complete history array. It intentionally preserves the current VOVA, T-SHY, and race-result grids as requested.
 
@@ -92,10 +92,11 @@ type AppState = {
   avatars: { vova:string; tshy:string };
   winner: string;
   tweet: string;
+  tweetAvatar: string;
 }
 ```
 
-Avatars and winner images are base64 strings when uploaded. The root seed file intentionally contains empty arrays/strings; normalization supplies sensible placeholder defaults on first load.
+Avatars, the Formula 1 account avatar, and winner images are base64 strings when uploaded. The root seed file intentionally contains empty arrays/strings; normalization supplies sensible placeholder defaults on first load.
 
 ## Scoring formula
 

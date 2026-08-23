@@ -15,6 +15,7 @@ export type AppState = {
   avatars: { vova:string; tshy:string };
   winner: string;
   tweet: string;
+  tweetAvatar: string;
 };
 
 export const avatarFallback = (name:string, color:string) =>
@@ -26,7 +27,8 @@ export function defaultState(): AppState {
     vovaFL: drivers[7], tshyFL: drivers[7], resultFL: drivers[7], history: [], scores: { vova: 0, tshy: 0 },
     avatars: { vova: avatarFallback('V','#e84b5a'), tshy: avatarFallback('T','#24cbd0') },
     winner: 'https://images.unsplash.com/photo-1617654112368-307921291f42?auto=format&fit=crop&w=900&q=80',
-    tweet: 'GEORGE RUSSELL WINS #F1SPRINT AT ZANDVOORT!!!'
+    tweet: 'GEORGE RUSSELL WINS #F1SPRINT AT ZANDVOORT!!!',
+    tweetAvatar: avatarFallback('F','#242424')
   };
 }
 
@@ -50,6 +52,7 @@ export function normalizeState(input: Partial<AppState> | null | undefined): App
     result: canonicalGrid(input?.result, fallback.result),
     vovaFL: canonical(input?.vovaFL), tshyFL: canonical(input?.tshyFL), resultFL: canonical(input?.resultFL),
     winner: input?.winner || fallback.winner,
-    tweet: input?.tweet || fallback.tweet
+    tweet: input?.tweet || fallback.tweet,
+    tweetAvatar: input?.tweetAvatar || fallback.tweetAvatar
   };
 }

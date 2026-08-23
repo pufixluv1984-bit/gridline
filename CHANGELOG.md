@@ -90,3 +90,7 @@
 
 [2026-08-23] Lock winner image frame size
 - Fixed the center Last Race Winner image frame height so uploaded photos fill it with `object-fit: cover` without stretching the image or expanding the card layout.
+
+[2026-08-23] Add Formula 1 account avatar upload
+- Added an admin-editable avatar in place of the white account square beside `Formula 1`.
+- The avatar is stored in shared app state and remains visible to read-only visitors.
