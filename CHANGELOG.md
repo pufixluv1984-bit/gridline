@@ -83,3 +83,7 @@
 [2026-08-23] Correct half-based scoring range bonus
 - Replaced the old ±5-position range check with exact top-5/bottom-5 half matching.
 - Updated the scoring panel and SPEC examples to document the corrected rule.
+
+[2026-08-23] Allow Fastest Lap driver overlap
+- Fastest Lap pickers now allow all 22 drivers, including drivers already selected in positions 01–10.
+- Duplicate blocking remains enabled for regular position cards.
