@@ -100,7 +100,7 @@ Avatars, the Formula 1 account avatar, and winner images are base64 strings when
 
 ## Scoring formula
 
-`scorePlayer` iterates over each predicted position. An exact position match adds `SCORING_RULES.exact` (12). A non-exact driver match adds `SCORING_RULES.range` (6) only when the predicted and actual positions are in the same half: positions 1–5 (top half) or positions 6–10 (bottom half). This is a band comparison, not a proximity/distance check: for example, Leclerc predicted P3 and finishing P4 earns +6, while Sainz predicted P2 and finishing P8 earns 0. A driver missing from the result top 10 earns 0. A matching fastest-lap driver adds `SCORING_RULES.fastestLap` (2).
+`scorePlayer` iterates over each predicted position. An exact position match adds `SCORING_RULES.exact` (12). A non-exact driver match adds `SCORING_RULES.range` (6) only when both predicted and actual positions are in the top 5. For example, Leclerc predicted P3 and finishing P4 earns +6, while predicted P8 and finishing P9 earns 0; bottom-5 non-exact positions receive no range bonus. A driver missing from the result top 10 earns 0. A matching fastest-lap driver adds `SCORING_RULES.fastestLap` (2).
 
 ## Limitations / TODO
 

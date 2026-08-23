@@ -98,3 +98,7 @@
 [2026-08-23] Align winner card with prediction grids
 - Made the center Last Race Winner card stretch to the full height of the neighboring grids, removing the empty space underneath.
 - The image still uses `object-fit: cover` so it fills the frame without distortion.
+
+[2026-08-23] Fix winner card overflow and top-5 scoring
+- Constrained the center winner card to the shared prediction-grid row height so its image cannot extend below position 10.
+- Removed the bottom-5 range bonus: only non-exact matches where both positions are in 1–5 receive +6.
