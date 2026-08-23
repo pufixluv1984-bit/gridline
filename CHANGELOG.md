@@ -102,3 +102,6 @@
 [2026-08-23] Fix winner card overflow and top-5 scoring
 - Constrained the center winner card to the shared prediction-grid row height so its image cannot extend below position 10.
 - Removed the bottom-5 range bonus: only non-exact matches where both positions are in 1–5 receive +6.
+
+[2026-08-23] Show scoring feedback on prediction cards
+- After APPLY RESULT, exact position hits display a red `+12` badge and top-5 range hits display a gold `+6` badge on the relevant prediction cards.

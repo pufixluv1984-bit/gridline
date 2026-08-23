@@ -28,6 +28,7 @@ Position cards use dnd-kit `PointerSensor` with an 8px distance activation const
 
 Picker menus use one shared open state across VOVA, T-SHY, and the result grid, so opening one closes any other open menu. Position/result cards show the driver name once; their compact picker trigger contains only the single dropdown arrow.
 The official Race result grid is also reorderable for admins with the same 8px drag activation behavior as the prediction grids; its order is saved to shared state.
+After APPLY RESULT, prediction cards show a red `+12` badge for exact matches and a gold `+6` badge for non-exact top-5 matches. These per-position badges are stored in `lastApplied` and are shown only for the applied current round.
 
 The Last Race Winner card now contains an editable Formula 1 account avatar, account label, editable tweet line, and image. The decorative WINNER/SPRINT overlay was removed. The card is a flex column and the image fills the fixed frame with `object-fit: cover` and centered alignment.
 
@@ -93,6 +94,7 @@ type AppState = {
   winner: string;
   tweet: string;
   tweetAvatar: string;
+  lastApplied: { round:string; vova:number[]; tshy:number[] } | null;
 }
 ```
 
