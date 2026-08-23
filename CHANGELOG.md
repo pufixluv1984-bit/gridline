@@ -125,3 +125,7 @@
 [2026-08-23] Add expandable history prediction breakdowns
 - APPLY RESULT now stores both predictions, the actual top-10 result, and fastest-lap picks in each history entry.
 - History rounds can expand to show per-position predicted vs actual drivers, exact/range/miss points, fastest-lap bonus, and round totals; older entries show a safe no-details message.
+
+[2026-08-23] Align RESET and APPLY RESULT controls
+- Removed the header button offsets and aligned both controls with the Predictions & result heading.
+- Added clean wrapping behavior for narrower viewports so the buttons do not overlap the section underline.
