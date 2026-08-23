@@ -26,6 +26,8 @@ This is intentionally a simple client-side/UI-level gate for a small friends-onl
 
 Position cards use dnd-kit `PointerSensor` with an 8px distance activation constraint: a quick interaction opens the picker, while moving past the threshold starts a reorder drag. Result cards are picker-only and are not draggable.
 
+Picker menus use one shared open state across VOVA, T-SHY, and the result grid, so opening one closes any other open menu. Position/result cards show the driver name once; their compact picker trigger contains only the single dropdown arrow.
+
 The Last Race Winner card now contains only the Formula 1 account label, editable tweet line, and image. The decorative WINNER/SPRINT overlay was removed. The card is a flex column and the image fills the remaining space with `object-fit: cover` and centered alignment.
 
 RESET uses a confirmation dialog with the exact destructive-action warning. After confirmation it sets both shared scores to zero and clears the complete history array. It intentionally preserves the current VOVA, T-SHY, and race-result grids as requested.

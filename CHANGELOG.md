@@ -72,3 +72,6 @@
 - Added driver data, team colors, scoring engine, drag-and-drop prediction grids, fastest-lap selection, uploads, localStorage persistence, and round history.
 - Added `SPEC.md` documenting the implemented behavior and known deviations.
 - Files affected: `package.json`, `index.html`, `vite.config.ts`, `tsconfig.json`, `src/`, `SPEC.md`.
+[2026-08-23] Fix picker menus and duplicate driver labels
+- Coordinated all picker menus globally so opening a new driver dropdown closes the previously open one.
+- Removed the repeated driver nickname from position/result picker triggers while keeping one chevron at the far right; restored spacing for Fastest Lap labels.

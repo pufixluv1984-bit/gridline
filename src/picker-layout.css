@@ -1,0 +1,3 @@
+.picker-trigger.compact{justify-content:flex-end}
+.picker-trigger .picker-label{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.picker-trigger .picker-arrow{flex:0 0 auto;overflow:visible;text-overflow:clip;color:#aaa}
