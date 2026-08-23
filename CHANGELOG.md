@@ -1,5 +1,11 @@
 # Changelog
 
+## [2026-08-23] Fix sortable duplicate-id drag glitch
+- Normalized loaded prediction/result grids to unique driver IDs and filled duplicate slots with unused drivers.
+- Persisted the normalized Supabase state on load so dnd-kit receives stable unique sortable IDs after refresh.
+- Fixed overlapping/ghost cards and incorrect position movement caused by legacy duplicate selections.
+- Files affected: `src/data/appState.ts`, `src/main.tsx`.
+
 ## [2026-08-23] Correct driver numbers and card interactions
 - Replaced driver data with the exact supplied 2026 numbers and displayed car numbers in cards and pickers.
 - Added disabled duplicate choices with current-driver checkmarks in the custom picker.

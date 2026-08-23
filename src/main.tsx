@@ -13,7 +13,7 @@ import './picker.css';
 function App(){
  const [tab,setTab]=useState<'dashboard'|'history'>('dashboard'); const [state,setState]=useState<AppState|null>(null); const [loadError,setLoadError]=useState<string|null>(null); const [toast,setToast]=useState(''); const [saving,setSaving]=useState(false);
  const saveQueue=useRef(Promise.resolve());
- const load=()=>{setLoadError(null);setState(null);loadSharedState().then(result=>{console.log(`[GRIDLINE] State loaded from ${result.source}.`);if(result.error){setLoadError(result.error);return}setState(result.state)})};
+ const load=()=>{setLoadError(null);setState(null);loadSharedState().then(result=>{console.log(`[GRIDLINE] State loaded from ${result.source}.`);if(result.error){setLoadError(result.error);return}setState(result.state);if(result.source==='supabase')saveSharedState(result.state).then(()=>console.log('[GRIDLINE] Normalized shared state saved.')).catch(error=>console.warn('[GRIDLINE] Could not save normalized shared state.',error))})};
  useEffect(load,[]);
  if(!state) return <div className="app loading" style={{minHeight:'100vh',display:'grid',placeItems:'center',color:'#777',textAlign:'center'}}>{loadError?<div><p>Unable to load shared GRIDLINE state.</p><button onClick={load}>RETRY</button></div>:'LOADING SHARED GRIDLINE STATE…'}</div>;
  const commit=(next:AppState,message?:string)=>{setState(next);setSaving(true);saveQueue.current=saveQueue.current.catch(()=>undefined).then(()=>saveSharedState(next)).then(()=>console.log('[GRIDLINE] State saved.')).catch(error=>{console.error('[GRIDLINE] State save failed.',error);setToast('Shared save failed');setTimeout(()=>setToast(''),2800)}).finally(()=>setSaving(false));if(message){setToast(message);setTimeout(()=>setToast(''),2200)}};

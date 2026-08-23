@@ -33,7 +33,13 @@ export function defaultState(): AppState {
 export function normalizeState(input: Partial<AppState> | null | undefined): AppState {
   const fallback = defaultState();
   const canonical = (value: Driver | undefined) => drivers.find(driver => driver.id === value?.id) || value || drivers[0];
-  const canonicalGrid = (value: Driver[] | undefined, fallbackGrid: Driver[]) => Array.isArray(value) && value.length ? value.map(canonical) : fallbackGrid;
+  const canonicalGrid = (value: Driver[] | undefined, fallbackGrid: Driver[]) => {
+    const source = Array.isArray(value) && value.length ? value.map(canonical) : fallbackGrid;
+    const unique = source.filter((driver, index, all) => all.findIndex(candidate => candidate.id === driver.id) === index);
+    const used = new Set(unique.map(driver => driver.id));
+    for (const driver of drivers) { if (unique.length >= 10) break; if (!used.has(driver.id)) { unique.push(driver); used.add(driver.id); } }
+    return unique.slice(0, 10);
+  };
   return {
     ...fallback, ...input,
     scores: { ...fallback.scores, ...(input?.scores || {}) },
