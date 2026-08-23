@@ -99,7 +99,7 @@ type AppState = {
 }
 ```
 
-Avatars, the Formula 1 account avatar, and winner images are base64 strings when uploaded. The root seed file intentionally contains empty arrays/strings; normalization supplies sensible placeholder defaults on first load. `cardAccent` is a shared hex color for the Last Race Winner card; it drives the card border/glow/background and the non-destructive image gradient overlay.
+Avatars, the Formula 1 account avatar, and winner images are base64 strings when uploaded. The root seed file intentionally contains empty arrays/strings; normalization supplies sensible placeholder defaults on first load. `cardAccent` is a shared hex color for the Last Race Winner card, selected only from team-color presets; it drives the card border/background and the bottom-only non-destructive image gradient overlay without an outer glow.
 
 ## Scoring formula
 

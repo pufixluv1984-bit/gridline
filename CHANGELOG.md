@@ -117,3 +117,7 @@
 [2026-08-23] Add manual winner card accent color
 - Added admin-only team-color presets and a custom color picker for the Last Race Winner card.
 - The selected accent persists in shared state and controls the card border/glow/background plus the photo gradient overlay.
+
+[2026-08-23] Refine winner card accent styling
+- Removed the top photo tint, keeping only the bottom accent gradient.
+- Removed the outer card glow and custom color input; only team-color presets remain.
