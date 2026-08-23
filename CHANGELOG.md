@@ -1,5 +1,11 @@
 # Changelog
 
+## [2026-08-23] Add shared-password edit lock
+- Added default read-only mode for visitors and a shared-password `LOG IN` modal for admins.
+- Restored editing controls only after login and added browser-local login persistence plus logout.
+- Added `VITE_ADMIN_PASSWORD` to `.env.example`, GitHub Actions build configuration, `README.md`, and `SPEC.md`.
+- Documented that this is a UI-level casual gate, not backend-enforced authorization.
+
 ## [2026-08-23] Fix chevron duplication and fastest-lap spacing
 - Removed the redundant card-level chevron so position/result cards now show one picker arrow.
 - Restored spacing and right alignment between the FASTEST LAP label and selected driver.

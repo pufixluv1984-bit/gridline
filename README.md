@@ -17,6 +17,8 @@ For live shared persistence, copy `.env.example` to `.env`, fill in the Supabase
 
 GitHub Pages deployment is automated by `.github/workflows/deploy.yml`. Add repository Actions secrets named `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY`; use only the Supabase publishable/anon key here. Never add a Supabase secret/service-role key to GitHub Actions secrets used by the frontend build.
 
+Editing is protected by a simple shared UI password. Set `VITE_ADMIN_PASSWORD` in `.env` locally and as a GitHub Actions secret for the live build. Visitors can view the site without logging in; each admin logs in separately and the browser remembers the session in `localStorage`. This is a casual UI gate, not backend-enforced security.
+
 ## Links
 
 Live deployment: https://pufixluv1984-bit.github.io/gridline/

@@ -18,6 +18,12 @@ GRIDLINE is an F1 prediction battle for VOVA and T-SHY. It provides a dashboard 
 
 The Dashboard includes the header tabs, hero, editable round number, shared score card, avatar uploads, scoring rules, two prediction grids, fastest-lap pickers, last-race-winner card, official result grid, APPLY RESULT, and RESET. Driver cards and dropdown options display the driver's car number. The custom picker disables drivers already selected elsewhere in the same grid, keeps the current driver selectable with a checkmark, and shows disabled choices greyed out. The History tab shows applied rounds and running scores.
 
+## Edit lock / login gate
+
+The default UI is read-only. A `LOG IN` button opens a single shared-password modal. The password is read from `VITE_ADMIN_PASSWORD` at build time and is not committed to the repository. A successful login stores a browser-local `gridline-admin-session` flag in `localStorage`; it does not change shared backend data or grant a server-side role. Logged-out visitors cannot open pickers, drag cards, upload avatars, edit tweet/image content, change the round, APPLY RESULT, or RESET. Logged-in visitors regain all editing controls, and the header button logs them out when clicked.
+
+This is intentionally a simple client-side/UI-level gate for a small friends-only fan site. It is not hardened security: a determined user could inspect the frontend or call the Supabase API directly. Supabase RLS remains the data-access policy, while this password only controls the visible editing UI.
+
 Position cards use dnd-kit `PointerSensor` with an 8px distance activation constraint: a quick interaction opens the picker, while moving past the threshold starts a reorder drag. Result cards are picker-only and are not draggable.
 
 The Last Race Winner card now contains only the Formula 1 account label, editable tweet line, and image. The decorative WINNER/SPRINT overlay was removed. The card is a flex column and the image fills the remaining space with `object-fit: cover` and centered alignment.
