@@ -113,3 +113,7 @@
 [2026-08-23] Lock winner card to prediction-row height
 - Made the three-column prediction layout stretch as one grid row and constrained the winner image wrap with `min-height: 0`, overflow clipping, and an absolute `object-fit: cover` image.
 - Verified default and wide viewport layouts: the center card bottom matches both side grids, independent of the image's intrinsic dimensions.
+
+[2026-08-23] Add manual winner card accent color
+- Added admin-only team-color presets and a custom color picker for the Last Race Winner card.
+- The selected accent persists in shared state and controls the card border/glow/background plus the photo gradient overlay.
