@@ -4,6 +4,7 @@
 - Replaced driver data with the exact supplied 2026 numbers and displayed car numbers in cards and pickers.
 - Added disabled duplicate choices with current-driver checkmarks in the custom picker.
 - Replaced native drag-and-drop with dnd-kit PointerSensor distance activation for tap-to-pick and press/drag-to-reorder behavior.
+- Made a quick tap anywhere on a position card open its picker while preserving the drag threshold behavior.
 - Made RESET match APPLY RESULT height and removed its Russian subtitle.
 - Removed the winner-image decorative text overlay and made the image fill the flex card cleanly with cover alignment.
 - Files affected: `src/data/drivers.ts`, `src/data/appState.ts`, `src/main.tsx`, `src/picker.css`, `package.json`, `pnpm-lock.yaml`, `SPEC.md`.
