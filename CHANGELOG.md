@@ -79,3 +79,7 @@
 [2026-08-23] Enable Race result drag-and-drop
 - Added admin drag-and-drop reordering to the official Race result grid.
 - Reordered result positions are persisted with the shared app state.
+
+[2026-08-23] Correct half-based scoring range bonus
+- Replaced the old ±5-position range check with exact top-5/bottom-5 half matching.
+- Updated the scoring panel and SPEC examples to document the corrected rule.
