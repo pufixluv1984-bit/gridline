@@ -96,6 +96,7 @@ type AppState = {
   tweetAvatar: string;
   cardAccent: string;
   lastApplied: { round:string; vova:number[]; tshy:number[] } | null;
+  gridLocks: { vova:boolean; tshy:boolean; result:boolean };
 }
 ```
 
@@ -108,5 +109,7 @@ Avatars, the Formula 1 account avatar, and winner images are base64 strings when
 ## Limitations / TODO
 
 - The published Pages site is configured with the Supabase URL and publishable key through encrypted GitHub Actions secrets. It uses refresh-based synchronization: visitors see the same saved state after loading/refreshing. There is no realtime subscription yet.
+- Shared writes now load the latest backend state inside the serialized save queue before applying a patch. This prevents unrelated stale writes from overwriting newer history; history append/clear operations log explicit traces in the console. APPLY RESULT appends a full round snapshot, then increments the shared current round and resets the three grids for the next round. RESET intentionally clears scores/history and resets the round to `01` while leaving the current grids unchanged.
+- `gridLocks` stores admin-controlled locks for VOVA, T-SHY, and the official result grid. Locked grids disable pickers and drag-and-drop; admins can unlock them with the lock button. Logged-out visitors cannot see or toggle these controls.
 - History entries have no edit/delete controls.
 - Realtime Supabase subscriptions are not implemented; sync is refresh-based.

@@ -129,3 +129,8 @@
 [2026-08-23] Align RESET and APPLY RESULT controls
 - Removed the header button offsets and aligned both controls with the Predictions & result heading.
 - Added clean wrapping behavior for narrower viewports so the buttons do not overlap the section underline.
+
+[2026-08-23] Harden history persistence, rounds, and grid locks
+- Fixed stale full-state writes by loading the freshest shared state inside the serialized save queue before merging each change; added history append/clear console traces.
+- APPLY RESULT now saves the round snapshot, advances the shared round number, and prepares fresh grids; RESET clears history/scores and resets the round to `01` while preserving grids.
+- Added shared admin-only lock/unlock controls for VOVA, T-SHY, and Race Result grids.

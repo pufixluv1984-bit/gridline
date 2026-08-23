@@ -18,6 +18,7 @@ export type AppState = {
   tweetAvatar: string;
   cardAccent: string;
   lastApplied: { round:string; vova:number[]; tshy:number[] } | null;
+  gridLocks: { vova:boolean; tshy:boolean; result:boolean };
 };
 
 export const avatarFallback = (name:string, color:string) =>
@@ -30,7 +31,7 @@ export function defaultState(): AppState {
     avatars: { vova: avatarFallback('V','#e84b5a'), tshy: avatarFallback('T','#24cbd0') },
     winner: 'https://images.unsplash.com/photo-1617654112368-307921291f42?auto=format&fit=crop&w=900&q=80',
     tweet: 'GEORGE RUSSELL WINS #F1SPRINT AT ZANDVOORT!!!',
-    tweetAvatar: avatarFallback('F','#242424'), cardAccent: '#ff4d5e', lastApplied: null
+    tweetAvatar: avatarFallback('F','#242424'), cardAccent: '#ff4d5e', lastApplied: null, gridLocks: { vova:true, tshy:true, result:true }
   };
 }
 
@@ -57,6 +58,7 @@ export function normalizeState(input: Partial<AppState> | null | undefined): App
     tweet: input?.tweet || fallback.tweet,
     tweetAvatar: input?.tweetAvatar || fallback.tweetAvatar,
     cardAccent: /^#[0-9a-f]{6}$/i.test(input?.cardAccent || '') ? input!.cardAccent! : fallback.cardAccent,
-    lastApplied: input?.lastApplied && Array.isArray(input.lastApplied.vova) && Array.isArray(input.lastApplied.tshy) ? input.lastApplied : fallback.lastApplied
+    lastApplied: input?.lastApplied && Array.isArray(input.lastApplied.vova) && Array.isArray(input.lastApplied.tshy) ? input.lastApplied : fallback.lastApplied,
+    gridLocks: { ...fallback.gridLocks, ...(input?.gridLocks || {}) }
   };
 }
