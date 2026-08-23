@@ -105,3 +105,7 @@
 
 [2026-08-23] Show scoring feedback on prediction cards
 - After APPLY RESULT, exact position hits display a red `+12` badge and top-5 range hits display a gold `+6` badge on the relevant prediction cards.
+
+[2026-08-23] Harden client-side admin sessions
+- Replaced the forgeable `localStorage` admin flag with a SHA-256 token containing a 24-hour expiry.
+- Tokens are validated on load and before every shared-state write; documented the remaining static-client limitation.
