@@ -1,5 +1,10 @@
 # Changelog
 
+## [2026-08-23] Fix chevron duplication and fastest-lap spacing
+- Removed the redundant card-level chevron so position/result cards now show one picker arrow.
+- Restored spacing and right alignment between the FASTEST LAP label and selected driver.
+- Files affected: `src/main.tsx`, `src/layout-fixes.css`.
+
 ## [2026-08-23] Show car numbers in right-side badges
 - Replaced the large right-side `12/10/8` scoring badges on prediction and result cards with each driver's actual car number (`#1`, `#23`, `#44`, etc.).
 - Scoring behavior remains unchanged; the badge is now unambiguously a driver-number badge.
