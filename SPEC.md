@@ -4,10 +4,10 @@ GRIDLINE is an F1 prediction battle for VOVA and T-SHY. It provides a dashboard 
 
 ## Stack and structure
 
-- React + TypeScript + Vite with custom CSS.
+- React + TypeScript + Vite with custom CSS and `@dnd-kit/core`/`@dnd-kit/sortable` for card reordering.
 - `src/main.tsx` contains the Dashboard, History, grids, score card, RESET flow, and upload controls.
 - `src/styles.css` contains the responsive dark visual system.
-- `src/data/drivers.ts` is the driver/team source of truth.
+- `src/data/drivers.ts` is the driver/team/number source of truth. It contains the exact 2026 FIA-confirmed numbers supplied for all 22 drivers.
 - `src/data/appState.ts` defines the shared JSON shape, defaults, and normalization.
 - `src/data/storage.ts` selects the local Vite API, Supabase REST API, or static read-only fallback.
 - `src/utils/scoring.ts` contains scoring constants and the score engine.
@@ -16,7 +16,11 @@ GRIDLINE is an F1 prediction battle for VOVA and T-SHY. It provides a dashboard 
 
 ## Implemented screens and behavior
 
-The Dashboard includes the header tabs, hero, editable round number, shared score card, avatar uploads, scoring rules, two prediction grids, fastest-lap selects, last-race-winner card, official result grid, APPLY RESULT, and RESET. Prediction cards support native HTML drag-and-drop reordering and driver selection. Duplicate drivers are allowed and receive a yellow warning border. The History tab shows applied rounds and running scores.
+The Dashboard includes the header tabs, hero, editable round number, shared score card, avatar uploads, scoring rules, two prediction grids, fastest-lap pickers, last-race-winner card, official result grid, APPLY RESULT, and RESET. Driver cards and dropdown options display the driver's car number. The custom picker disables drivers already selected elsewhere in the same grid, keeps the current driver selectable with a checkmark, and shows disabled choices greyed out. The History tab shows applied rounds and running scores.
+
+Position cards use dnd-kit `PointerSensor` with an 8px distance activation constraint: a quick interaction opens the picker, while moving past the threshold starts a reorder drag. Result cards are picker-only and are not draggable.
+
+The Last Race Winner card now contains only the Formula 1 account label, editable tweet line, and image. The decorative WINNER/SPRINT overlay was removed. The card is a flex column and the image fills the remaining space with `object-fit: cover` and centered alignment.
 
 RESET uses a confirmation dialog with the exact destructive-action warning. After confirmation it sets both shared scores to zero and clears the complete history array. It intentionally preserves the current VOVA, T-SHY, and race-result grids as requested.
 
@@ -91,6 +95,5 @@ Avatars and winner images are base64 strings when uploaded. The root seed file i
 ## Limitations / TODO
 
 - The published Pages site is configured with the Supabase URL and publishable key through encrypted GitHub Actions secrets. It uses refresh-based synchronization: visitors see the same saved state after loading/refreshing. There is no realtime subscription yet.
-- Native drag-and-drop is used instead of dnd-kit to keep the standalone build lightweight.
 - History entries have no edit/delete controls.
-- The winner label remains decorative and follows the round input.
+- Realtime Supabase subscriptions are not implemented; sync is refresh-based.

@@ -32,14 +32,17 @@ export function defaultState(): AppState {
 
 export function normalizeState(input: Partial<AppState> | null | undefined): AppState {
   const fallback = defaultState();
+  const canonical = (value: Driver | undefined) => drivers.find(driver => driver.id === value?.id) || value || drivers[0];
+  const canonicalGrid = (value: Driver[] | undefined, fallbackGrid: Driver[]) => Array.isArray(value) && value.length ? value.map(canonical) : fallbackGrid;
   return {
     ...fallback, ...input,
     scores: { ...fallback.scores, ...(input?.scores || {}) },
     avatars: { ...fallback.avatars, ...(input?.avatars || {}), vova: input?.avatars?.vova || fallback.avatars.vova, tshy: input?.avatars?.tshy || fallback.avatars.tshy },
     history: Array.isArray(input?.history) ? input!.history! : fallback.history,
-    vova: Array.isArray(input?.vova) && input!.vova!.length ? input!.vova! : fallback.vova,
-    tshy: Array.isArray(input?.tshy) && input!.tshy!.length ? input!.tshy! : fallback.tshy,
-    result: Array.isArray(input?.result) && input!.result!.length ? input!.result! : fallback.result,
+    vova: canonicalGrid(input?.vova, fallback.vova),
+    tshy: canonicalGrid(input?.tshy, fallback.tshy),
+    result: canonicalGrid(input?.result, fallback.result),
+    vovaFL: canonical(input?.vovaFL), tshyFL: canonical(input?.tshyFL), resultFL: canonical(input?.resultFL),
     winner: input?.winner || fallback.winner,
     tweet: input?.tweet || fallback.tweet
   };

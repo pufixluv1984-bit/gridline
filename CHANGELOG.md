@@ -1,5 +1,13 @@
 # Changelog
 
+## [2026-08-23] Correct driver numbers and card interactions
+- Replaced driver data with the exact supplied 2026 numbers and displayed car numbers in cards and pickers.
+- Added disabled duplicate choices with current-driver checkmarks in the custom picker.
+- Replaced native drag-and-drop with dnd-kit PointerSensor distance activation for tap-to-pick and press/drag-to-reorder behavior.
+- Made RESET match APPLY RESULT height and removed its Russian subtitle.
+- Removed the winner-image decorative text overlay and made the image fill the flex card cleanly with cover alignment.
+- Files affected: `src/data/drivers.ts`, `src/data/appState.ts`, `src/main.tsx`, `src/picker.css`, `package.json`, `pnpm-lock.yaml`, `SPEC.md`.
+
 ## [2026-08-23] Configure GitHub Pages Supabase build
 - Verified the `app_state` table is readable and writable using the publishable key and configured RLS.
 - Added a GitHub Actions Pages workflow that builds with `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` repository secrets.
