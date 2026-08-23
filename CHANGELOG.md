@@ -1,5 +1,9 @@
 # Changelog
 
+## [2026-08-23] Show car numbers in right-side badges
+- Replaced the large right-side `12/10/8` scoring badges on prediction and result cards with each driver's actual car number (`#1`, `#23`, `#44`, etc.).
+- Scoring behavior remains unchanged; the badge is now unambiguously a driver-number badge.
+
 ## [2026-08-23] Fix sortable duplicate-id drag glitch
 - Normalized loaded prediction/result grids to unique driver IDs and filled duplicate slots with unused drivers.
 - Persisted the normalized Supabase state on load so dnd-kit receives stable unique sortable IDs after refresh.
