@@ -75,3 +75,7 @@
 [2026-08-23] Fix picker menus and duplicate driver labels
 - Coordinated all picker menus globally so opening a new driver dropdown closes the previously open one.
 - Removed the repeated driver nickname from position/result picker triggers while keeping one chevron at the far right; restored spacing for Fastest Lap labels.
+
+[2026-08-23] Enable Race result drag-and-drop
+- Added admin drag-and-drop reordering to the official Race result grid.
+- Reordered result positions are persisted with the shared app state.
