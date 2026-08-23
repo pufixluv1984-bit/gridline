@@ -1,1 +1,3 @@
 .fastest{gap:24px}.fastest>span:first-child{flex:0 0 auto;white-space:nowrap}.fastest>.driver-picker{flex:1;min-width:0}.fastest>.driver-picker .picker-trigger{justify-content:flex-end;gap:10px}.fastest>.driver-picker .picker-trigger span{font-size:11px;color:#f0c6ff;font-weight:800}.fastest>.driver-picker .picker-trigger span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.winner-card{height:620px;min-height:620px;overflow:hidden}.winner-image{height:440px;min-height:0;flex:0 0 440px}.winner-image img{width:100%;height:100%;object-fit:cover;object-position:center}
+@media(max-width:900px){.winner-card{height:auto;min-height:0}.winner-image{height:440px;flex-basis:440px}}

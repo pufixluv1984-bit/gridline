@@ -87,3 +87,6 @@
 [2026-08-23] Allow Fastest Lap driver overlap
 - Fastest Lap pickers now allow all 22 drivers, including drivers already selected in positions 01–10.
 - Duplicate blocking remains enabled for regular position cards.
+
+[2026-08-23] Lock winner image frame size
+- Fixed the center Last Race Winner image frame height so uploaded photos fill it with `object-fit: cover` without stretching the image or expanding the card layout.
