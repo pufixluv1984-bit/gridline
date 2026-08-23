@@ -94,3 +94,7 @@
 [2026-08-23] Add Formula 1 account avatar upload
 - Added an admin-editable avatar in place of the white account square beside `Formula 1`.
 - The avatar is stored in shared app state and remains visible to read-only visitors.
+
+[2026-08-23] Align winner card with prediction grids
+- Made the center Last Race Winner card stretch to the full height of the neighboring grids, removing the empty space underneath.
+- The image still uses `object-fit: cover` so it fills the frame without distortion.
